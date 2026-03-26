@@ -80,6 +80,18 @@
       font-family:"DM Sans",sans-serif;font-size:1rem;font-weight:500;
       box-shadow:0 0 30px rgba(45,142,255,0.4);
     }
+    .menu-close{
+      position:absolute;top:22px;right:22px;
+      width:44px;height:44px;
+      background:rgba(45,142,255,0.08);
+      border:1px solid rgba(45,142,255,0.2);
+      border-radius:12px;
+      display:flex;align-items:center;justify-content:center;
+      cursor:pointer;transition:all 0.2s ease;
+      -webkit-tap-highlight-color:transparent;
+    }
+    .menu-close:hover,.menu-close:active{background:rgba(45,142,255,0.2);border-color:rgba(45,142,255,0.5);}
+    .menu-close svg{width:18px;height:18px;}
 
     /* ===== HERO ===== */
     .hero-wrapper{position:relative;overflow:hidden;min-height:100vh}
@@ -286,13 +298,13 @@
       .card-price-row{justify-content:flex-start}
       .card-tag,.card-name,.card-desc{text-align:left}
       .card-cta{justify-content:center}
-      .stats-row{gap:0;display:grid !important;grid-template-columns:1fr 1fr !important;width:100%;max-width:360px;margin-top:40px}
-      .stat{min-width:0;flex:none;border:1px solid rgba(45,142,255,0.12);border-radius:0 !important;padding:16px 20px}
-      .stat-divider{display:none}
-      .stat:nth-child(1){border-radius:14px 0 0 0 !important;border-right:none;border-bottom:none}
-      .stat:nth-child(2){border-radius:0 14px 0 0 !important;border-bottom:none}
-      .stat:nth-child(3){border-radius:0 0 0 14px !important;border-right:none;border-top:none}
-      .stat:nth-child(4){border-radius:0 0 14px 0 !important;border-top:none}
+      .stats-row{display:grid !important;grid-template-columns:1fr 1fr !important;width:100%;max-width:360px;margin-top:40px;gap:0}
+      .stat-divider{display:none !important}
+      .stat{min-width:0;flex:none;border:1px solid rgba(45,142,255,0.15);border-radius:0 !important;padding:18px 16px}
+      .stat-1{border-radius:14px 0 0 0 !important;border-right:none;border-bottom:none}
+      .stat-2{border-radius:0 14px 0 0 !important;border-bottom:none}
+      .stat-3{border-radius:0 0 0 14px !important;border-right:none;border-top:none}
+      .stat-4{border-radius:0 0 14px 0 !important;border-top:none}
     }
 
     @media(max-width:480px){
@@ -309,6 +321,11 @@
 
   <!-- MOBILE MENU OVERLAY -->
   <div class="mobile-menu" id="mobileMenu">
+    <button class="menu-close" onclick="closeMenu()" aria-label="Close menu">
+      <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 2L16 16M16 2L2 16" stroke="rgba(255,255,255,0.7)" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
     <a href="#" onclick="closeMenu()">Services</a>
     <a href="#pricing" onclick="closeMenu()">Pricing</a>
     <a href="#about" onclick="closeMenu()">About</a>
@@ -368,13 +385,13 @@
         </a>
       </div>
       <div class="stats-row">
-        <div class="stat"><div class="stat-num">30+</div><div class="stat-label">APPS SHIPPED</div></div>
+        <div class="stat stat-1"><div class="stat-num">30+</div><div class="stat-label">APPS SHIPPED</div></div>
         <div class="stat-divider"></div>
-        <div class="stat"><div class="stat-num">14,30</div><div class="stat-label">DAYS TO LAUNCH</div></div>
+        <div class="stat stat-2"><div class="stat-num">14,30</div><div class="stat-label">DAYS TO LAUNCH</div></div>
         <div class="stat-divider"></div>
-        <div class="stat"><div class="stat-num">100%</div><div class="stat-label">CROSS-PLATFORM</div></div>
+        <div class="stat stat-3"><div class="stat-num">100%</div><div class="stat-label">CROSS-PLATFORM</div></div>
         <div class="stat-divider"></div>
-        <div class="stat"><div class="stat-num">5★</div><div class="stat-label">CLIENT RATING</div></div>
+        <div class="stat stat-4"><div class="stat-num">5★</div><div class="stat-label">CLIENT RATING</div></div>
       </div>
 
       <!-- ORBIT -->
@@ -563,7 +580,7 @@
             <div class="contact-icon">
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 3.5h10v7H2v-7zm0 0l5 4 5-4" stroke="rgba(45,142,255,0.7)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
-            <div class="contact-label"><a href="mailto:flutterdeviser@gmail.com" target="_blank">flutterdeviser@gmail.com</a></div>
+          <div class="contact-label"><a href="mailto:flutterdeviser@gmail.com">flutterdeviser@gmail.com</a></div>
           </div>
           <div class="contact-item">
             <div class="contact-icon">
