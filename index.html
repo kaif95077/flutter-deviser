@@ -2166,22 +2166,22 @@ body,body *{cursor:none!important;}
 }
 
 
-/* MOBILE POPUP — TRUE TEXT ARROW, NEVER EMOJI */
+/* MOBILE POPUP ARROW — SVG ICON, NEVER EMOJI */
 @media(max-width:640px){
   .booking-popup .booking-arrow{
-    font-family:Arial,sans-serif!important;
-    font-variant-emoji:text!important;
     font-size:0!important;
-    font-weight:400!important;
-    line-height:1!important;
+    line-height:0!important;
+    text-indent:-9999px;
+    overflow:hidden;
   }
   .booking-popup .booking-arrow::before{
-    content:"\2197"!important;
-    font-family:Arial,sans-serif!important;
-    font-variant-emoji:text!important;
-    font-size:17px!important;
-    font-weight:700!important;
-    line-height:1!important;
+    content:""!important;
+    display:block;
+    width:16px;
+    height:16px;
+    background-color:currentColor;
+    -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 19L19 5M9 5h10v10' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='square' stroke-linejoin='miter'/%3E%3C/svg%3E") center/contain no-repeat;
+    mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 19L19 5M9 5h10v10' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='square' stroke-linejoin='miter'/%3E%3C/svg%3E") center/contain no-repeat;
   }
 }
 
