@@ -1849,6 +1849,268 @@ body,body *{cursor:none!important;}
   }
 }
 
+
+/* GLOBAL CLIENTS */
+.global-clients-section{
+  overflow:hidden;
+  border-top:2px solid var(--ink);
+}
+.global-head{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:40px;
+  margin-bottom:55px;
+}
+.global-head h2{
+  margin-top:16px;
+}
+.global-head h2 span{
+  color:#203EED;
+}
+.global-head p{
+  max-width:390px;
+  margin:0 0 8px;
+  color:var(--mute);
+  font-size:14px;
+  line-height:1.55;
+}
+.world-stage{
+  position:relative;
+  height:480px;
+  overflow:hidden;
+  background:#fffdf7;
+  border:2px solid var(--ink);
+}
+.world-grid{
+  position:absolute;
+  inset:0;
+  opacity:.14;
+  background:
+    linear-gradient(90deg,transparent 49.8%,#111 50%,transparent 50.2%),
+    linear-gradient(0deg,transparent 49.8%,#111 50%,transparent 50.2%);
+  background-size:72px 72px;
+}
+.world-stage::before{
+  content:"";
+  position:absolute;
+  width:300px;
+  height:300px;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  background:#f2c230;
+  border:2px solid #111;
+}
+.world-stage::after{
+  content:"";
+  position:absolute;
+  width:170px;
+  height:170px;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  background:#203EED;
+  border:2px solid #111;
+  border-radius:50%;
+}
+.world-orbit{
+  position:absolute;
+  left:50%;
+  top:50%;
+  border:1px solid rgba(17,17,17,.35);
+  border-radius:50%;
+  transform:translate(-50%,-50%) rotate(-18deg);
+}
+.world-orbit-one{
+  width:640px;
+  height:270px;
+}
+.world-orbit-two{
+  width:520px;
+  height:390px;
+  transform:translate(-50%,-50%) rotate(58deg);
+}
+.world-core{
+  position:absolute;
+  z-index:5;
+  left:50%;
+  top:50%;
+  width:154px;
+  height:154px;
+  transform:translate(-50%,-50%);
+  border:3px solid #111;
+  background:#111;
+  color:#fffdf7;
+  border-radius:50%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+.world-core strong{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:30px;
+  line-height:.9;
+  letter-spacing:-.06em;
+}
+.world-core-top,.world-core-bottom{
+  font:700 7px/1 'IBM Plex Mono',monospace;
+  letter-spacing:.1em;
+  opacity:.65;
+}
+.world-core-bottom{margin-top:8px;}
+.world-node{
+  position:absolute;
+  z-index:10;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:9px 11px;
+  background:#fffdf7;
+  border:2px solid #111;
+  box-shadow:4px 4px 0 #111;
+  font-family:'Space Grotesk',sans-serif;
+  font-size:12px;
+  font-weight:800;
+  transition:transform .2s ease,background .2s ease,color .2s ease;
+}
+.world-node:hover{
+  background:#203EED;
+  color:#fff;
+  transform:translateY(-5px);
+}
+.world-node i{
+  width:8px;
+  height:8px;
+  display:block;
+  border-radius:50%;
+  background:#203EED;
+  border:1px solid #111;
+}
+.world-node small{
+  margin-left:5px;
+  font:700 7px/1 'IBM Plex Mono',monospace;
+  opacity:.55;
+}
+.node-nigeria{left:8%;top:25%;}
+.node-germany{left:30%;top:8%;}
+.node-canada{right:8%;top:22%;}
+.node-france{right:13%;bottom:20%;}
+.node-tanzania{left:16%;bottom:15%;}
+.node-india{right:34%;bottom:8%;}
+.country-strip{
+  display:grid;
+  grid-template-columns:repeat(8,1fr);
+  border:2px solid var(--ink);
+  border-top:0;
+  background:#fffdf7;
+}
+.country-strip div{
+  min-height:76px;
+  padding:15px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  border-right:1px solid var(--ink);
+}
+.country-strip div:last-child{border-right:0;}
+.country-strip strong{
+  color:#203EED;
+  font:800 12px/1 'IBM Plex Mono',monospace;
+}
+.country-strip span{
+  font:700 9px/1.2 'IBM Plex Mono',monospace;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+}
+@media(max-width:900px){
+  .global-head{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:18px;
+  }
+  .world-stage{height:400px;}
+  .world-stage::before{width:245px;height:245px;}
+  .world-stage::after{width:140px;height:140px;}
+  .world-orbit-one{width:520px;height:220px;}
+  .world-orbit-two{width:430px;height:320px;}
+  .country-strip{
+    grid-template-columns:repeat(3,1fr);
+  }
+  .country-strip div:nth-child(3){border-right:0;}
+  .country-strip div:nth-child(-n+3){border-bottom:1px solid var(--ink);}
+}
+@media(max-width:640px){
+  .global-head{margin-bottom:30px;}
+  .global-head h2{font-size:43px;}
+  .world-stage{height:390px;}
+  .world-stage::before{width:220px;height:220px;}
+  .world-stage::after{width:126px;height:126px;}
+  .world-core{width:118px;height:118px;}
+  .world-core strong{font-size:23px;}
+  .world-orbit-one{width:410px;height:185px;}
+  .world-orbit-two{width:340px;height:270px;}
+  .world-node{
+    padding:7px 8px;
+    font-size:9px;
+    box-shadow:3px 3px 0 #111;
+  }
+  .world-node small{display:none;}
+  .node-nigeria{left:4%;top:18%;}
+  .node-germany{left:28%;top:6%;}
+  .node-canada{right:4%;top:18%;}
+  .node-france{right:4%;bottom:16%;}
+  .node-tanzania{left:5%;bottom:13%;}
+  .node-india{right:31%;bottom:5%;}
+  .country-strip{
+    grid-template-columns:repeat(2,1fr);
+  }
+  .country-strip div:nth-child(3){
+    border-right:1px solid var(--ink);
+  }
+  .country-strip div:nth-child(2n){
+    border-right:0;
+  }
+  .country-strip div:nth-child(-n+4){
+    border-bottom:1px solid var(--ink);
+  }
+}
+
+
+.node-portugal{left:44%;top:20%;}
+.node-usa{right:5%;top:50%;}
+
+@media(max-width:900px){
+  .node-portugal{left:42%;top:20%;}
+  .node-usa{right:3%;top:49%;}
+}
+@media(max-width:640px){
+  .node-portugal{left:40%;top:25%;}
+  .node-usa{right:3%;top:49%;}
+}
+
+
+/* MOBILE COUNTRY GRID — KEEP ALL BOX DIVIDERS VISIBLE */
+@media(max-width:640px){
+  .country-strip{
+    grid-template-columns:repeat(2,1fr)!important;
+  }
+  .country-strip div{
+    border-right:1px solid var(--ink)!important;
+    border-bottom:1px solid var(--ink)!important;
+  }
+  .country-strip div:nth-child(2n){
+    border-right:0!important;
+  }
+  .country-strip div:nth-child(7),
+  .country-strip div:nth-child(8){
+    border-bottom:0!important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -2551,6 +2813,68 @@ body,body *{cursor:none!important;}
 </section>
 
 
+    
+<!-- GLOBAL CLIENTS -->
+<section class="section bg-void global-clients-section" id="global-clients">
+  <div class="container">
+    <div class="global-head reveal">
+      <div>
+        <span class="eyebrow">Built without borders</span>
+        <h2>Clients from<br><span>all over the world.</span></h2>
+      </div>
+      <p>From early-stage founders to growing businesses, we build products for teams across continents.</p>
+    </div>
+
+    <div class="world-stage reveal">
+      <div class="world-grid"></div>
+      <div class="world-orbit world-orbit-one"></div>
+      <div class="world-orbit world-orbit-two"></div>
+      <div class="world-core">
+        <span class="world-core-top">FLUTTER DEVISER</span>
+        <strong>GLOBAL</strong>
+        <span class="world-core-bottom">PRODUCT PARTNERS</span>
+      </div>
+
+      <div class="world-node node-nigeria">
+        <i></i><span>Nigeria</span><small>NG</small>
+      </div>
+      <div class="world-node node-germany">
+        <i></i><span>Germany</span><small>DE</small>
+      </div>
+      <div class="world-node node-canada">
+        <i></i><span>Canada</span><small>CA</small>
+      </div>
+      <div class="world-node node-france">
+        <i></i><span>France</span><small>FR</small>
+      </div>
+      <div class="world-node node-tanzania">
+        <i></i><span>Tanzania</span><small>TZ</small>
+      </div>
+      <div class="world-node node-india">
+        <i></i><span>India</span><small>IN</small>
+      </div>
+      <div class="world-node node-portugal">
+        <i></i><span>Portugal</span><small>PT</small>
+      </div>
+      <div class="world-node node-usa">
+        <i></i><span>USA</span><small>US</small>
+      </div>
+    </div>
+
+    <div class="country-strip reveal">
+      <div><strong>NG</strong><span>Nigeria</span></div>
+      <div><strong>DE</strong><span>Germany</span></div>
+      <div><strong>CA</strong><span>Canada</span></div>
+      <div><strong>FR</strong><span>France</span></div>
+      <div><strong>TZ</strong><span>Tanzania</span></div>
+      <div><strong>IN</strong><span>India</span></div>
+      <div><strong>PT</strong><span>Portugal</span></div>
+      <div><strong>US</strong><span>USA</span></div>
+    </div>
+  </div>
+</section>
+
+
     <!-- PRICING -->
 <section class="section bg-paper" id="pricing">
   <div class="container">
@@ -2800,8 +3124,9 @@ document.addEventListener('DOMContentLoaded', function(){
     ['work','03 / RECENT SHIPS'],
     ['services','04 / SERVICES'],
     ['process','05 / FIVE STAGES'],
-    ['pricing','06 / PRICING'],
-    ['contact','07 / START A PROJECT']
+    ['global-clients','06 / GLOBAL CLIENTS'],
+    ['pricing','07 / PRICING'],
+    ['contact','08 / START A PROJECT']
   ];
 
   function setLabel(text, firstVisit=false){
