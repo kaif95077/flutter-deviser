@@ -1745,6 +1745,110 @@ body,body *{cursor:none!important;}
   background:#f4efe2;
 }
 
+
+/* CLIENT FEEDBACK */
+.client-feedback-section{
+  border-top:2px solid var(--ink);
+}
+.client-feedback-section .section-head p{
+  max-width:620px;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:.05em;
+}
+.feedback-grid{
+  display:grid;
+  grid-template-columns:repeat(6,minmax(0,1fr));
+  gap:0;
+  border:2px solid var(--ink);
+  background:var(--ink);
+}
+.feedback-card{
+  grid-column:span 2;
+  min-height:250px;
+  padding:25px;
+  background:#fffdf7;
+  border-right:1px solid var(--ink);
+  border-bottom:1px solid var(--ink);
+  display:flex;
+  flex-direction:column;
+  transition:transform .2s ease,background .2s ease,color .2s ease;
+}
+.feedback-card:nth-child(4){grid-column:2 / span 2;}
+.feedback-card:hover{
+  background:#203EED;
+  color:#fff;
+  transform:translateY(-4px);
+}
+.feedback-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:28px;
+}
+.feedback-stars{
+  color:#203EED;
+  font-size:16px;
+  letter-spacing:2px;
+}
+.feedback-card:hover .feedback-stars{
+  color:#f2c230;
+}
+.feedback-index{
+  font:700 9px/1 'IBM Plex Mono',monospace;
+  opacity:.5;
+}
+.feedback-quote{
+  margin:0;
+  font-family:'Space Grotesk',sans-serif;
+  font-size:17px;
+  line-height:1.3;
+  letter-spacing:-.02em;
+  flex:1;
+}
+.feedback-client{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  margin-top:25px;
+  padding-top:15px;
+  border-top:1px solid rgba(17,17,17,.18);
+}
+.feedback-card:hover .feedback-client{
+  border-color:rgba(255,255,255,.28);
+}
+.feedback-client strong{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:13px;
+}
+.feedback-client span{
+  font:700 8px/1.2 'IBM Plex Mono',monospace;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  opacity:.65;
+}
+@media(max-width:900px){
+  .feedback-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  .feedback-card,
+  .feedback-card:nth-child(4){
+    grid-column:auto;
+  }
+}
+@media(max-width:640px){
+  .feedback-grid{
+    grid-template-columns:1fr;
+  }
+  .feedback-card,
+  .feedback-card:nth-child(4){
+    grid-column:auto;
+    min-height:220px;
+    padding:20px;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -2372,7 +2476,82 @@ body,body *{cursor:none!important;}
   </div>
 </section>
 
-<!-- PRICING -->
+
+<!-- CLIENT FEEDBACK -->
+<section class="section bg-paper client-feedback-section" id="feedback">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Client feedback</span>
+      <h2>Good work.<br>Good words.</h2>
+      <p>Draft testimonial copy — approve with each client before publishing.</p>
+    </div>
+
+    <div class="feedback-grid">
+      <article class="feedback-card reveal">
+        <div class="feedback-top">
+          <span class="feedback-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          <span class="feedback-index">01</span>
+        </div>
+        <p class="feedback-quote">“Fast, thoughtful, and genuinely easy to work with. The final product felt polished from day one.”</p>
+        <div class="feedback-client">
+          <strong>Nason Karol</strong>
+          <span>ANZA Cash</span>
+        </div>
+      </article>
+
+      <article class="feedback-card reveal">
+        <div class="feedback-top">
+          <span class="feedback-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          <span class="feedback-index">02</span>
+        </div>
+        <p class="feedback-quote">“Great execution and clear communication throughout. They turned the idea into something real, quickly.”</p>
+        <div class="feedback-client">
+          <strong>Justin</strong>
+          <span>eSIM Dual</span>
+        </div>
+      </article>
+
+      <article class="feedback-card reveal">
+        <div class="feedback-top">
+          <span class="feedback-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          <span class="feedback-index">03</span>
+        </div>
+        <p class="feedback-quote">“Professional, creative, and responsive. The attention to detail made a big difference.”</p>
+        <div class="feedback-client">
+          <strong>Hermione Kamga</strong>
+          <span>Sogeht</span>
+        </div>
+      </article>
+
+      <article class="feedback-card reveal">
+        <div class="feedback-top">
+          <span class="feedback-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          <span class="feedback-index">04</span>
+        </div>
+        <p class="feedback-quote">“A smooth development experience with strong product thinking and a sharp final result.”</p>
+        <div class="feedback-client">
+          <strong>Basil Mustapha</strong>
+          <span>BamScores</span>
+        </div>
+      </article>
+
+      <article class="feedback-card reveal">
+        <div class="feedback-top">
+          <span class="feedback-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          <span class="feedback-index">05</span>
+        </div>
+        <p class="feedback-quote">“They understood what we needed and delivered with speed, clarity, and attention to the details that matter.”</p>
+        <div class="feedback-client">
+          <strong>James Penny</strong>
+          <span>Pinpoint</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+    <!-- PRICING -->
 <section class="section bg-paper" id="pricing">
   <div class="container">
     <div class="section-head reveal"><span class="eyebrow">Pick your build tier</span><h2>Transparent pricing. No surprises.</h2><p>Every tier ends in a working app. Higher tiers add scope, integrations, and speed.</p></div>
