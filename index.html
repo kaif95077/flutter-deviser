@@ -2111,6 +2111,60 @@ body,body *{cursor:none!important;}
   }
 }
 
+
+/* MOBILE BOOKING POPUP — ALTERNATIVE ARROW */
+@media(max-width:640px){
+  .booking-popup .booking-arrow{
+    width:34px;
+    height:34px;
+    flex:0 0 34px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:2px solid currentColor;
+    border-radius:50%;
+    font-size:0;
+    line-height:1;
+    transition:transform .2s ease,background .2s ease;
+  }
+  .booking-popup .booking-arrow::before{
+    content:"↗";
+    font-size:17px;
+    font-weight:800;
+  }
+  .booking-popup .booking-link:hover .booking-arrow{
+    transform:rotate(8deg) scale(1.08);
+    background:#fff;
+    color:#203EED;
+  }
+}
+
+
+/* MOBILE MENU — MATCH BOOKING BUTTON SIZES */
+@media(max-width:1024px){
+  .mob-cta{
+    width:100%!important;
+    align-items:stretch!important;
+  }
+  .mob-cta > .btn{
+    width:100%!important;
+    min-height:52px!important;
+    height:52px!important;
+    box-sizing:border-box!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    margin:0!important;
+  }
+  .mob-cta .menu-or-divider{
+    flex:0 0 auto!important;
+  }
+  .mob-cta .whatsapp-btn{
+    padding:0 16px!important;
+    font-size:10px!important;
+  }
+}
+
 </style>
 </head>
 <body>
