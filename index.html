@@ -1500,9 +1500,202 @@ body,body *{cursor:none!important;}
   }
 }
 
+
+/* 10-SECOND BOOKING POPUP */
+.booking-popup{
+  position:fixed;
+  inset:0;
+  z-index:100000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:opacity .28s ease,visibility .28s ease;
+}
+.booking-popup.is-open{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+}
+.booking-backdrop{
+  position:absolute;
+  inset:0;
+  background:rgba(17,17,17,.72);
+}
+.booking-card{
+  position:relative;
+  z-index:2;
+  width:min(620px,100%);
+  max-height:calc(100vh - 48px);
+  overflow:auto;
+  padding:42px;
+  background:#fffdf7;
+  color:#111;
+  border:2px solid #111;
+  box-shadow:12px 12px 0 #203EED;
+  transform:translateY(18px) scale(.97);
+  transition:transform .35s cubic-bezier(.2,.8,.2,1);
+}
+.booking-popup.is-open .booking-card{
+  transform:translateY(0) scale(1);
+}
+.booking-close{
+  position:absolute;
+  top:14px;
+  right:14px;
+  width:38px;
+  height:38px;
+  border:2px solid #111;
+  background:#fffdf7;
+  color:#111;
+  font-family:'Space Grotesk',sans-serif;
+  font-size:26px;
+  line-height:1;
+  cursor:pointer!important;
+  transition:background .18s,color .18s,transform .18s;
+}
+.booking-close:hover{
+  background:#203EED;
+  color:#fff;
+  transform:rotate(8deg);
+}
+.booking-eyebrow{
+  display:inline-block;
+  margin-bottom:16px;
+  padding:6px 9px;
+  background:#203EED;
+  color:#fff;
+  font:700 9px/1 'IBM Plex Mono',monospace;
+  letter-spacing:.1em;
+}
+.booking-card h2{
+  margin:0;
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(42px,6vw,68px);
+  line-height:.88;
+  letter-spacing:-.06em;
+}
+.booking-card h2 span{
+  color:#203EED;
+}
+.booking-desc{
+  max-width:480px;
+  margin:18px 0 25px;
+  color:#5e5a50;
+  font-size:14px;
+  line-height:1.55;
+}
+.booking-links{
+  display:grid;
+  gap:8px;
+}
+.booking-link{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  min-height:70px;
+  padding:12px 14px;
+  border:2px solid #111;
+  background:#f4efe2;
+  color:#111;
+  text-decoration:none;
+  transition:transform .18s ease,background .18s ease,color .18s ease,box-shadow .18s ease;
+}
+.booking-link:hover{
+  transform:translateX(5px);
+  background:#203EED;
+  color:#fff;
+  box-shadow:5px 5px 0 #111;
+}
+.booking-link.booking-primary{
+  background:#111;
+  color:#fffdf7;
+}
+.booking-link.booking-primary:hover{
+  background:#203EED;
+}
+.booking-link.booking-whatsapp{
+  border-color:#203EED;
+}
+.booking-link-num{
+  width:34px;
+  font:700 9px/1 'IBM Plex Mono',monospace;
+  opacity:.65;
+}
+.booking-link-copy{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+.booking-link-copy strong{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:15px;
+  letter-spacing:-.02em;
+}
+.booking-link-copy small{
+  font:500 9px/1.3 'IBM Plex Mono',monospace;
+  opacity:.65;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+}
+.booking-arrow{
+  font-size:22px;
+  font-weight:700;
+}
+@media(max-width:640px){
+  .booking-popup{padding:14px;}
+  .booking-card{
+    padding:30px 18px 18px;
+    box-shadow:7px 7px 0 #203EED;
+  }
+  .booking-card h2{font-size:43px;}
+  .booking-close{top:10px;right:10px;width:34px;height:34px;}
+  .booking-link{min-height:64px;padding:10px;}
+}
+
 </style>
 </head>
 <body>
+
+<!-- BOOKING POPUP -->
+<div id="booking-popup" class="booking-popup" aria-hidden="true">
+  <div class="booking-backdrop"></div>
+  <div class="booking-card" role="dialog" aria-modal="true" aria-labelledby="booking-title">
+    <button class="booking-close" id="bookingClose" aria-label="Close booking popup">×</button>
+    <span class="booking-eyebrow">LET'S BUILD</span>
+    <h2 id="booking-title">Ready to build<br><span>your app?</span></h2>
+    <p class="booking-desc">Choose how you'd like to get started.</p>
+
+    <div class="booking-links">
+      <a class="booking-link booking-primary"
+         href="https://cal.com/flutter-deviser/app-development"
+         target="_blank" rel="noopener">
+        <span class="booking-link-num">01</span>
+        <span class="booking-link-copy">
+          <strong>Book a Free Call</strong>
+          <small>Schedule a project discussion</small>
+        </span>
+        <span class="booking-arrow">↗</span>
+      </a>
+
+      <a class="booking-link booking-whatsapp"
+         href="https://api.whatsapp.com/send?phone=917838086198"
+         target="_blank" rel="noopener">
+        <span class="booking-link-num">02</span>
+        <span class="booking-link-copy">
+          <strong>DM us on WhatsApp</strong>
+          <small>Chat with us directly</small>
+        </span>
+        <span class="booking-arrow">↗</span>
+      </a>
+    </div>
+  </div>
+</div>
+
 
 <div id="cr-outer"></div>
 <div id="cr-inner"></div>
@@ -1734,7 +1927,7 @@ body,body *{cursor:none!important;}
     <a href="https://api.whatsapp.com/send?phone=917838086198" target="_blank" rel="noopener" class="btn whatsapp-btn">
   <span class="wa-icon" aria-hidden="true">◔</span> DM us on WhatsApp
 </a>
-    <a href="mailto:flutterdeviser@gmail.com" class="btn btn-outline">Email the Team</a>
+    
   </div>
   <p class="mob-info"><span class="status-dot"></span>Available &middot; Q3 2026 &mdash; 2 slots left</p>
 </div>
@@ -2113,12 +2306,14 @@ body,body *{cursor:none!important;}
     <p>Tell us what the app needs to do. We'll tell you what it costs and when it ships.</p>
     <div class="cta-btns">
       <a href="https://cal.com/flutter-deviser/app-development" target="_blank" rel="noopener" class="btn btn-primary">Book a Free Call</a>
-      <a href="https://www.instagram.com/flutter.deviser/" target="_blank" rel="noopener" class="btn btn-outline">DM on Instagram</a>
+      
       <a href="https://api.whatsapp.com/send?phone=917838086198" target="_blank" rel="noopener" class="btn whatsapp-btn">
   <span class="wa-icon" aria-hidden="true">◔</span> DM us on WhatsApp
 </a>
-    <a href="mailto:flutterdeviser@gmail.com" class="btn btn-outline">Email the Team</a>
-    </div>
+    
+    <a href="https://www.instagram.com/flutter.deviser/" target="_blank" rel="noopener" class="btn btn-outline">DM on Instagram</a>
+      <a href="mailto:flutterdeviser@gmail.com" class="btn btn-outline">Email the Team</a>
+      </div>
     <p class="cta-note">Now booking Q3 2026 &mdash; only 2 slots left<span class="blink" style="margin-left:6px;"></span></p>
   </div>
 </section>
@@ -2133,8 +2328,8 @@ body,body *{cursor:none!important;}
       </div>
       <div class="footer-links">
         <a href="#work">Work</a><a href="#services">Services</a><a href="#process">Process</a><a href="#pricing">Pricing</a>
-        <a href="https://www.instagram.com/flutter.deviser/" target="_blank" rel="noopener">Instagram</a>
-        <a href="mailto:flutterdeviser@gmail.com">Email</a>
+        
+        
       </div>
     </div>
     <div class="footer-bottom">
@@ -2427,6 +2622,37 @@ document.addEventListener('DOMContentLoaded', function(){
     section.dataset.cursorName = String(index+1).padStart(2,'0') + ' / ' + name;
     observer.observe(section);
   });
+})();
+</script>
+
+
+<script>
+/* Open booking popup after 10 seconds, once per page load. */
+(function(){
+  const popup = document.getElementById('booking-popup');
+  const close = document.getElementById('bookingClose');
+  const backdrop = popup && popup.querySelector('.booking-backdrop');
+  if(!popup || !close) return;
+
+  function openBooking(){
+    popup.classList.add('is-open');
+    popup.setAttribute('aria-hidden','false');
+    document.body.classList.add('booking-popup-open');
+  }
+
+  function closeBooking(){
+    popup.classList.remove('is-open');
+    popup.setAttribute('aria-hidden','true');
+    document.body.classList.remove('booking-popup-open');
+  }
+
+  close.addEventListener('click', closeBooking);
+  if(backdrop) backdrop.addEventListener('click', closeBooking);
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape' && popup.classList.contains('is-open')) closeBooking();
+  });
+
+  setTimeout(openBooking, 10000);
 })();
 </script>
 
