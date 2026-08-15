@@ -2119,6 +2119,7 @@ body,body *{cursor:none!important;}
     height:34px;
     flex:0 0 34px;
     display:flex;
+    position:relative;
     align-items:center;
     justify-content:center;
     border:2px solid currentColor;
@@ -2128,9 +2129,21 @@ body,body *{cursor:none!important;}
     transition:transform .2s ease,background .2s ease;
   }
   .booking-popup .booking-arrow::before{
-    content:"↗";
-    font-size:17px;
-    font-weight:800;
+    content:"";
+    width:9px;
+    height:9px;
+    display:block;
+    border-top:2px solid currentColor;
+    border-right:2px solid currentColor;
+    transform:translate(-1px,1px) rotate(45deg);
+  }
+  .booking-popup .booking-arrow::after{
+    content:"";
+    position:absolute;
+    width:13px;
+    height:2px;
+    background:currentColor;
+    transform:rotate(-45deg);
   }
   .booking-popup .booking-link:hover .booking-arrow{
     transform:rotate(8deg) scale(1.08);
