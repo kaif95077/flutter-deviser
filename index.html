@@ -2694,6 +2694,83 @@ html.dark-mode .theme-switch-thumb{
 /* remove older icon-based toggle visuals */
 .theme-toggle-icon{display:none!important;}
 
+
+/* MODERN THEME CONTROL */
+.theme-switch{
+  width:auto!important;
+  min-width:96px!important;
+  height:32px!important;
+  min-height:32px!important;
+  padding:0 8px!important;
+  border:1.5px solid var(--ink)!important;
+  background:var(--paper)!important;
+  color:var(--ink)!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:6px!important;
+  border-radius:999px!important;
+  box-shadow:none!important;
+  transform:none!important;
+  transition:background .2s ease,color .2s ease,border-color .2s ease;
+}
+.theme-switch:hover{
+  background:var(--ink)!important;
+  color:var(--paper)!important;
+}
+.theme-switch-label{
+  font:700 8px/1 'IBM Plex Mono',monospace;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.theme-switch-sun,
+.theme-switch-moon{
+  font:700 11px/1 'Space Grotesk',sans-serif;
+}
+.theme-switch-track{
+  position:relative;
+  width:27px;
+  height:16px;
+  border:1.5px solid currentColor;
+  border-radius:999px;
+  display:block;
+  flex:0 0 27px;
+}
+.theme-switch-thumb{
+  position:absolute;
+  top:2px;
+  left:2px;
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:currentColor;
+  transition:transform .22s cubic-bezier(.2,.8,.2,1);
+}
+html.dark-mode .theme-switch{
+  background:#050505!important;
+  color:#f5f5f5!important;
+  border-color:#f5f5f5!important;
+}
+html.dark-mode .theme-switch:hover{
+  background:#f5f5f5!important;
+  color:#000!important;
+}
+html.dark-mode .theme-switch-thumb{
+  transform:translateX(11px);
+}
+@media(max-width:1024px){
+  .theme-switch{
+    min-width:96px!important;
+    height:34px!important;
+  }
+}
+@media(max-width:640px){
+  .theme-switch{
+    min-width:96px!important;
+    height:34px!important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -2941,14 +3018,16 @@ html.dark-mode .theme-switch-thumb{
       <a href="https://cal.com/flutter-deviser/app-development" target="_blank" rel="noopener" class="btn btn-primary nav-cta">Book a Free Call</a>
     </div>
       
-<button class="theme-toggle theme-switch" id="themeToggle" type="button"
+<button class="menu-btn" id="menuOpen" aria-label="Open menu" aria-expanded="false">Menu [&#9776;]</button>
+      <button class="theme-toggle theme-switch" id="themeToggle" type="button"
   aria-label="Toggle color theme" aria-pressed="false" title="Toggle color theme">
+  <span class="theme-switch-sun" aria-hidden="true">☼</span>
+  <span class="theme-switch-label">Theme</span>
   <span class="theme-switch-track" aria-hidden="true">
     <span class="theme-switch-thumb"></span>
   </span>
+  <span class="theme-switch-moon" aria-hidden="true">◐</span>
 </button>
-
-      <button class="menu-btn" id="menuOpen" aria-label="Open menu" aria-expanded="false">Menu [&#9776;]</button>
     </div>
   </div>
 </header>
@@ -2963,9 +3042,12 @@ html.dark-mode .theme-switch-thumb{
     
 <button class="theme-toggle theme-switch" id="themeToggleMobile" type="button"
   aria-label="Toggle color theme" aria-pressed="false" title="Toggle color theme">
+  <span class="theme-switch-sun" aria-hidden="true">☼</span>
+  <span class="theme-switch-label">Theme</span>
   <span class="theme-switch-track" aria-hidden="true">
     <span class="theme-switch-thumb"></span>
   </span>
+  <span class="theme-switch-moon" aria-hidden="true">◐</span>
 </button>
 
     <button class="menu-btn" id="menuClose" aria-label="Close menu" style="display:inline-flex;">Close [&#x2715;]</button>
