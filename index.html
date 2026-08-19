@@ -2626,7 +2626,73 @@ html.dark-mode .ps-links a.secondary:hover{
 }
 
 
-/* System-preference fallback remains automatic until the user chooses a mode. */
+/* SYSTEM THEME + COMPACT LIGHT/DARK SWITCH */
+.theme-switch{
+  width:42px!important;
+  height:24px!important;
+  min-width:42px!important;
+  min-height:24px!important;
+  padding:0!important;
+  border:0!important;
+  background:transparent!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  box-shadow:none!important;
+  color:var(--ink)!important;
+  transform:none!important;
+}
+.theme-switch:hover{
+  background:transparent!important;
+  color:var(--ink)!important;
+  transform:none!important;
+}
+.theme-switch-track{
+  position:relative;
+  width:42px;
+  height:24px;
+  display:block;
+  border:2px solid currentColor;
+  background:transparent;
+  border-radius:999px;
+  box-sizing:border-box;
+  transition:background .2s ease,border-color .2s ease;
+}
+.theme-switch-thumb{
+  position:absolute;
+  top:3px;
+  left:3px;
+  width:14px;
+  height:14px;
+  border-radius:50%;
+  background:currentColor;
+  transition:transform .22s cubic-bezier(.2,.8,.2,1),background .2s ease;
+}
+html.dark-mode .theme-switch-track{
+  background:#f5f5f5;
+  border-color:#f5f5f5;
+}
+html.dark-mode .theme-switch-thumb{
+  background:#000;
+  transform:translateX(18px);
+}
+@media(min-width:1025px){
+  .theme-switch,
+  .theme-toggle{
+    height:32px!important;
+    min-height:32px!important;
+  }
+}
+@media(max-width:640px){
+  .theme-switch,
+  .theme-toggle{
+    width:42px!important;
+    min-width:42px!important;
+  }
+}
+
+/* remove older icon-based toggle visuals */
+.theme-toggle-icon{display:none!important;}
 
 </style>
 </head>
@@ -2875,8 +2941,11 @@ html.dark-mode .ps-links a.secondary:hover{
       <a href="https://cal.com/flutter-deviser/app-development" target="_blank" rel="noopener" class="btn btn-primary nav-cta">Book a Free Call</a>
     </div>
       
-<button class="theme-toggle" id="themeToggle" type="button" aria-label="Enable dark mode" aria-pressed="false" title="Toggle dark mode">
-  <span class="theme-toggle-icon" aria-hidden="true"></span>
+<button class="theme-toggle theme-switch" id="themeToggle" type="button"
+  aria-label="Toggle color theme" aria-pressed="false" title="Toggle color theme">
+  <span class="theme-switch-track" aria-hidden="true">
+    <span class="theme-switch-thumb"></span>
+  </span>
 </button>
 
       <button class="menu-btn" id="menuOpen" aria-label="Open menu" aria-expanded="false">Menu [&#9776;]</button>
@@ -2892,8 +2961,11 @@ html.dark-mode .ps-links a.secondary:hover{
       <span class="wordmark-text">FLUTTER<span class="dot">.</span>DEVISER</span>
     </div>
     
-<button class="theme-toggle" id="themeToggleMobile" type="button" aria-label="Enable dark mode" aria-pressed="false" title="Toggle dark mode">
-  <span class="theme-toggle-icon" aria-hidden="true"></span>
+<button class="theme-toggle theme-switch" id="themeToggleMobile" type="button"
+  aria-label="Toggle color theme" aria-pressed="false" title="Toggle color theme">
+  <span class="theme-switch-track" aria-hidden="true">
+    <span class="theme-switch-thumb"></span>
+  </span>
 </button>
 
     <button class="menu-btn" id="menuClose" aria-label="Close menu" style="display:inline-flex;">Close [&#x2715;]</button>
@@ -3791,59 +3863,76 @@ document.addEventListener('DOMContentLoaded', function(){
 </script>
 
 
+
+
+
 <script>
-/* SYSTEM-DRIVEN THEME */
+try { localStorage.removeItem('fd-theme'); } catch(e) {}
+</script>
+
+
+<script>
+/* SYSTEM-DETECTED THEME + MANUAL LIGHT/DARK OVERRIDE */
 (function(){
   const root = document.documentElement;
   const desktop = document.getElementById('themeToggle');
   const mobile = document.getElementById('themeToggleMobile');
   const media = window.matchMedia('(prefers-color-scheme: dark)');
+  const KEY = 'fd-theme-mode-v3';
 
-  function applyTheme(dark){
-    root.classList.toggle('dark-mode', !!dark);
+  function systemIsDark(){
+    return media.matches;
+  }
+
+  function applyTheme(dark, mode){
+    root.classList.toggle('dark-mode', dark);
     [desktop,mobile].forEach(btn => {
       if(!btn) return;
-      btn.setAttribute('aria-pressed', String(!!dark));
+      btn.setAttribute('aria-pressed', String(dark));
       btn.setAttribute(
         'aria-label',
         dark ? 'Switch to light mode' : 'Switch to dark mode'
       );
       btn.title = dark ? 'Switch to light mode' : 'Switch to dark mode';
     });
+    if(mode) localStorage.setItem(KEY, mode);
   }
 
-  function applySystemTheme(){
-    applyTheme(media.matches);
+  function refreshFromSystem(){
+    const saved = localStorage.getItem(KEY);
+    if(saved === 'dark'){
+      applyTheme(true);
+    }else if(saved === 'light'){
+      applyTheme(false);
+    }else{
+      applyTheme(systemIsDark());
+    }
   }
 
-  // Always follow the device/browser system preference on page load.
-  try {
-    localStorage.removeItem('fd-theme');
-    localStorage.removeItem('fd-theme-v2');
-  } catch(e) {}
-
-  applySystemTheme();
-
-  // Keep following live OS/browser theme changes.
-  if(media.addEventListener){
-    media.addEventListener('change', applySystemTheme);
-  }else if(media.addListener){
-    media.addListener(applySystemTheme);
-  }
-
-  // Toggle changes the current view, but is not saved.
-  // The next system-theme event (or refresh) returns to the OS preference.
   function toggle(){
-    applyTheme(!root.classList.contains('dark-mode'));
+    const isDark = root.classList.contains('dark-mode');
+    applyTheme(!isDark, !isDark ? 'dark' : 'light');
   }
+
+  refreshFromSystem();
 
   if(desktop) desktop.addEventListener('click', toggle);
   if(mobile) mobile.addEventListener('click', toggle);
+
+  media.addEventListener?.('change', () => {
+    // System changes apply only while the user has not manually overridden theme.
+    if(!localStorage.getItem(KEY)) refreshFromSystem();
+  });
 })();
+</script>
 
 
-
-
+<script>
+try {
+  localStorage.removeItem('fd-theme-v2');
+  localStorage.removeItem('fd-theme');
+} catch(e) {}
+</script>
 
 </body>
 </html>
