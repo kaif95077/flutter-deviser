@@ -2185,6 +2185,442 @@ body,body *{cursor:none!important;}
   }
 }
 
+
+/* SIMPLE HERO TYPOGRAPHY */
+.hero h1{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+  max-width:780px;
+  letter-spacing:-.065em;
+  line-height:.86;
+}
+.hero-line-large{
+  display:block;
+  font-size:clamp(60px,7.6vw,112px);
+  font-weight:800;
+}
+.hero-line-small{
+  display:block;
+  font-size:clamp(38px,4.8vw,70px);
+  font-weight:600;
+  letter-spacing:-.055em;
+  color:#203EED;
+}
+@media(max-width:900px){
+  .hero-line-large{font-size:clamp(52px,9vw,82px);}
+  .hero-line-small{font-size:clamp(34px,6.5vw,58px);}
+}
+@media(max-width:640px){
+  .hero h1{gap:1px;line-height:.9;}
+  .hero-line-large{font-size:clamp(46px,13vw,66px);}
+  .hero-line-small{font-size:clamp(30px,8.5vw,46px);}
+}
+
+
+/* AMOLED DARK MODE */
+html.dark-mode{
+  --void:#000000;
+  --panel:#050505;
+  --paper:#000000;
+  --ink:#f5f5f5;
+  --ink-dark:#f5f5f5;
+  --mute:#a5a5a5;
+  --mute-light:#8f8f8f;
+  --signal:#203EED;
+  --hazard:#f2c230;
+  --ok:#36d98b;
+}
+html.dark-mode body{
+  background:#000;
+  color:#f5f5f5;
+}
+html.dark-mode .bg-paper,
+html.dark-mode .bg-void,
+html.dark-mode .hero,
+html.dark-mode .ticker-wrap,
+html.dark-mode footer{
+  background:#000!important;
+  color:#f5f5f5!important;
+}
+html.dark-mode header.nav{
+  background:rgba(0,0,0,.94);
+  border-color:#f5f5f5;
+}
+html.dark-mode .logo-box{
+  background:#000;
+  border-color:#f5f5f5;
+  box-shadow:4px 4px 0 #203EED;
+}
+html.dark-mode .btn-outline{
+  color:#f5f5f5;
+  border-color:#f5f5f5;
+}
+html.dark-mode .hero-sub,
+html.dark-mode .section-head p,
+html.dark-mode .wc-desc,
+html.dark-mode .wc-note,
+html.dark-mode .svc-card p,
+html.dark-mode .proc-cell p,
+html.dark-mode .global-head p,
+html.dark-mode .feedback-grid p{
+  color:#aaa!important;
+}
+html.dark-mode .hero-art,
+html.dark-mode .bauhaus-flat-art,
+html.dark-mode .world-stage,
+html.dark-mode .spec-grid,
+html.dark-mode .svc-grid,
+html.dark-mode .proc-row,
+html.dark-mode .work-grid,
+html.dark-mode .price-grid,
+html.dark-mode .feedback-grid,
+html.dark-mode .country-strip{
+  background:#000!important;
+  border-color:#f5f5f5;
+}
+html.dark-mode .flat-panel,
+html.dark-mode .work-card,
+html.dark-mode .svc-card,
+html.dark-mode .price-card,
+html.dark-mode .feedback-card,
+html.dark-mode .booking-card,
+html.dark-mode .country-strip,
+html.dark-mode .proc-row{
+  background:#050505!important;
+  color:#f5f5f5;
+}
+html.dark-mode .flat-panel-top,
+html.dark-mode .flat-panel-bottom,
+html.dark-mode .work-card,
+html.dark-mode .svc-card,
+html.dark-mode .price-card,
+html.dark-mode .feedback-card,
+html.dark-mode .country-strip div{
+  border-color:#f5f5f5;
+}
+html.dark-mode .world-stage::before{
+  background:#111;
+  border-color:#f5f5f5;
+}
+html.dark-mode .world-core{
+  background:#f5f5f5;
+  color:#000;
+  border-color:#f5f5f5;
+}
+html.dark-mode .world-node{
+  background:#050505;
+  color:#f5f5f5;
+  border-color:#f5f5f5;
+  box-shadow:4px 4px 0 #203EED;
+}
+html.dark-mode .country-strip{
+  background:#050505!important;
+}
+html.dark-mode .country-strip div{
+  border-color:#f5f5f5;
+}
+html.dark-mode .booking-link{
+  background:#050505;
+  color:#f5f5f5;
+  border-color:#f5f5f5;
+}
+html.dark-mode .booking-link.booking-primary{
+  background:#f5f5f5;
+  color:#000;
+}
+html.dark-mode .booking-close{
+  background:#050505;
+  color:#f5f5f5;
+  border-color:#f5f5f5;
+}
+html.dark-mode .booking-or-divider::before,
+html.dark-mode .booking-or-divider::after,
+html.dark-mode .menu-or-divider::before,
+html.dark-mode .menu-or-divider::after{
+  background:rgba(245,245,245,.25);
+}
+html.dark-mode .booking-or-divider span,
+html.dark-mode .menu-or-divider span{
+  background:#000;
+  color:#f5f5f5;
+  border-color:rgba(245,245,245,.35);
+}
+html.dark-mode .mob-overlay{
+  background:#000;
+  color:#f5f5f5;
+}
+html.dark-mode .mob-top,
+html.dark-mode .mob-overlay li{
+  border-color:rgba(245,245,245,.18);
+}
+html.dark-mode .feedback-card:hover,
+html.dark-mode .svc-card:hover,
+html.dark-mode .world-node:hover{
+  background:#203EED!important;
+  color:#fff!important;
+}
+
+/* DARK MODE TOGGLE */
+.theme-toggle{
+  width:42px;
+  height:42px;
+  padding:0;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border:2px solid var(--ink);
+  background:transparent;
+  color:var(--ink);
+  position:relative;
+  overflow:hidden;
+  transition:background .18s ease,color .18s ease,transform .18s ease;
+}
+.theme-toggle:hover{
+  background:var(--ink);
+  color:var(--paper);
+  transform:translateY(-2px);
+}
+.theme-toggle-icon{
+  width:18px;
+  height:18px;
+  display:block;
+  position:relative;
+}
+.theme-toggle-icon::before{
+  content:"";
+  position:absolute;
+  inset:1px;
+  border:2px solid currentColor;
+  border-radius:50%;
+}
+.theme-toggle-icon::after{
+  content:"";
+  position:absolute;
+  width:7px;
+  height:7px;
+  top:0;
+  right:0;
+  background:currentColor;
+  border-radius:50%;
+}
+html.dark-mode .theme-toggle-icon::before{
+  border-radius:3px;
+  transform:rotate(45deg);
+}
+html.dark-mode .theme-toggle-icon::after{
+  width:9px;
+  height:9px;
+  top:4px;
+  right:4px;
+  background:#000;
+  border-radius:50%;
+}
+@media(max-width:1024px){
+  .theme-toggle{width:40px;height:40px;}
+}
+@media(max-width:640px){
+  .theme-toggle{width:38px;height:38px;}
+}
+
+
+/* REFINED THEME TOGGLE */
+.theme-toggle{
+  width:30px!important;
+  height:30px!important;
+  min-width:30px!important;
+  padding:0!important;
+  border:1.5px solid currentColor!important;
+  box-shadow:none!important;
+  background:transparent!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  border-radius:0!important;
+  transform:none!important;
+}
+.theme-toggle:hover{
+  background:var(--ink)!important;
+  color:var(--paper)!important;
+  transform:none!important;
+}
+.theme-toggle-icon{
+  width:14px!important;
+  height:14px!important;
+}
+.theme-toggle-icon::before{
+  inset:1px!important;
+  border-width:1.5px!important;
+}
+.theme-toggle-icon::after{
+  width:5px!important;
+  height:5px!important;
+}
+html.dark-mode .theme-toggle{
+  color:#f5f5f5!important;
+  border-color:#f5f5f5!important;
+}
+html.dark-mode .theme-toggle:hover{
+  background:#f5f5f5!important;
+  color:#000!important;
+}
+@media(max-width:640px){
+  .theme-toggle{
+    width:30px!important;
+    height:30px!important;
+    min-width:30px!important;
+  }
+}
+
+
+/* HOVER CONTRAST FIXES */
+.btn-outline:hover,
+.btn-outline:focus-visible{
+  background:#111!important;
+  color:#fff!important;
+  border-color:#111!important;
+}
+html.dark-mode .btn-outline:hover,
+html.dark-mode .btn-outline:focus-visible{
+  background:#fff!important;
+  color:#000!important;
+  border-color:#fff!important;
+}
+
+.wf-btn:hover{
+  background:#203EED!important;
+  color:#fff!important;
+  border-color:#203EED!important;
+}
+.wf-btn.active:hover{
+  background:#111!important;
+  color:#fff!important;
+  border-color:#111!important;
+}
+
+.work-card:hover .wc-title{
+  color:#203EED!important;
+}
+html.dark-mode .work-card:hover .wc-title{
+  color:#fff!important;
+}
+.work-card:hover .wc-toggle{
+  color:#203EED!important;
+}
+html.dark-mode .work-card:hover .wc-toggle{
+  color:#fff!important;
+}
+
+.svc-card:hover,
+.svc-card:hover h3,
+.svc-card:hover p{
+  color:#fff!important;
+}
+html.dark-mode .svc-card:hover,
+html.dark-mode .svc-card:hover h3,
+html.dark-mode .svc-card:hover p{
+  color:#fff!important;
+}
+
+.feedback-card:hover,
+.feedback-card:hover .feedback-quote,
+.feedback-card:hover .feedback-client strong,
+.feedback-card:hover .feedback-client span{
+  color:#fff!important;
+}
+
+.booking-link:hover,
+.booking-link:hover strong,
+.booking-link:hover small{
+  color:#fff!important;
+}
+.booking-link.booking-primary:hover,
+.booking-link.booking-primary:hover strong,
+.booking-link.booking-primary:hover small{
+  color:#fff!important;
+}
+
+.world-node:hover,
+.world-node:hover span,
+.world-node:hover small{
+  color:#fff!important;
+}
+
+.theme-toggle:hover{
+  color:var(--paper)!important;
+}
+
+
+/* FINAL THEME TOGGLE + PROJECT BUTTON CONTRAST */
+@media(min-width:1025px){
+  .theme-toggle{
+    width:30px!important;
+    height:30px!important;
+    min-width:30px!important;
+    max-height:30px!important;
+  }
+  .menu-btn{
+    height:30px!important;
+    min-height:30px!important;
+    box-sizing:border-box!important;
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+  }
+}
+@media(max-width:1024px){
+  .theme-toggle{
+    width:30px!important;
+    height:30px!important;
+    min-width:30px!important;
+    max-height:30px!important;
+  }
+}
+
+/* Project action buttons remain dark in light mode and readable in AMOLED mode */
+.work-card .wc-links a{
+  background:#111!important;
+  color:#fff!important;
+  border-color:#111!important;
+}
+.work-card .wc-links a:hover{
+  background:#203EED!important;
+  color:#fff!important;
+  border-color:#203EED!important;
+}
+html.dark-mode .work-card .wc-links a{
+  background:#000!important;
+  color:#fff!important;
+  border-color:#fff!important;
+}
+html.dark-mode .work-card .wc-links a:hover{
+  background:#203EED!important;
+  color:#fff!important;
+  border-color:#203EED!important;
+}
+
+/* Popup project action links */
+.proj-popup .ps-links a{
+  background:#111!important;
+  color:#fff!important;
+  border-color:#111!important;
+}
+.proj-popup .ps-links a:hover{
+  background:#203EED!important;
+  color:#fff!important;
+  border-color:#203EED!important;
+}
+html.dark-mode .proj-popup .ps-links a{
+  background:#000!important;
+  color:#fff!important;
+  border-color:#fff!important;
+}
+html.dark-mode .proj-popup .ps-links a:hover{
+  background:#203EED!important;
+  color:#fff!important;
+  border-color:#203EED!important;
+}
+
 </style>
 </head>
 <body>
@@ -2431,6 +2867,11 @@ body,body *{cursor:none!important;}
 </a>
       <a href="https://cal.com/flutter-deviser/app-development" target="_blank" rel="noopener" class="btn btn-primary nav-cta">Book a Free Call</a>
     </div>
+      
+<button class="theme-toggle" id="themeToggle" type="button" aria-label="Enable dark mode" aria-pressed="false" title="Toggle dark mode">
+  <span class="theme-toggle-icon" aria-hidden="true"></span>
+</button>
+
       <button class="menu-btn" id="menuOpen" aria-label="Open menu" aria-expanded="false">Menu [&#9776;]</button>
     </div>
   </div>
@@ -2443,6 +2884,11 @@ body,body *{cursor:none!important;}
       <div class="logo-box"><img src="data:image/jpeg;base64,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" alt="Flutter Deviser logo"></div>
       <span class="wordmark-text">FLUTTER<span class="dot">.</span>DEVISER</span>
     </div>
+    
+<button class="theme-toggle" id="themeToggleMobile" type="button" aria-label="Enable dark mode" aria-pressed="false" title="Toggle dark mode">
+  <span class="theme-toggle-icon" aria-hidden="true"></span>
+</button>
+
     <button class="menu-btn" id="menuClose" aria-label="Close menu" style="display:inline-flex;">Close [&#x2715;]</button>
   </div>
   <ul>
@@ -2487,7 +2933,7 @@ body,body *{cursor:none!important;}
   <div class="container hero-grid">
     <div>
       <span class="eyebrow">Mobile app development studio<span class="blink"></span></span>
-      <h1>We build<br>flutter apps<br>that <span class="boxed">ship</span>.</h1>
+      <h1><span class="hero-line-large">WE BUILD</span><span class="hero-line-large">APPS</span><span class="hero-line-small">THAT SHIP.</span></h1>
       <p class="hero-sub">Flutter Deviser designs, codes, and launches mobile apps for founders who need a working product , not another deck. One team, one codebase, two platforms.</p>
       <div class="hero-ctas">
         <a href="https://cal.com/flutter-deviser/app-development" target="_blank" rel="noopener" class="btn btn-primary">Book a Free Call</a>
@@ -3335,6 +3781,44 @@ document.addEventListener('DOMContentLoaded', function(){
   new MutationObserver(sync).observe(menu,{attributes:true,attributeFilter:['class']});
   sync();
 })();
+</script>
+
+
+<script>
+/* LIGHT DEFAULT + PERSISTENT AMOLED DARK MODE */
+(function(){
+  const root = document.documentElement;
+  const desktop = document.getElementById('themeToggle');
+  const mobile = document.getElementById('themeToggleMobile');
+
+  function applyTheme(dark){
+    root.classList.toggle('dark-mode', dark);
+    [desktop,mobile].forEach(btn => {
+      if(!btn) return;
+      btn.setAttribute('aria-pressed', String(dark));
+      btn.setAttribute('aria-label', dark ? 'Enable light mode' : 'Enable dark mode');
+      btn.title = dark ? 'Switch to light mode' : 'Switch to dark mode';
+    });
+  }
+
+  // Default is always light unless the visitor previously chose dark mode.
+  const saved = localStorage.getItem('fd-theme-v2');
+  applyTheme(saved === 'dark' ? true : false);
+
+  function toggle(){
+    const dark = !root.classList.contains('dark-mode');
+    applyTheme(dark);
+    localStorage.setItem('fd-theme-v2', dark ? 'dark' : 'light');
+  }
+
+  if(desktop) desktop.addEventListener('click', toggle);
+  if(mobile) mobile.addEventListener('click', toggle);
+})();
+</script>
+
+
+<script>
+try { localStorage.removeItem('fd-theme'); } catch(e) {}
 </script>
 
 </body>
