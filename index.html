@@ -2625,6 +2625,9 @@ html.dark-mode .ps-links a.secondary:hover{
   border-color:#203EED!important;
 }
 
+
+/* System-preference fallback remains automatic until the user chooses a mode. */
+
 </style>
 </head>
 <body>
@@ -3789,41 +3792,58 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
 <script>
-/* LIGHT DEFAULT + PERSISTENT AMOLED DARK MODE */
+/* SYSTEM-DRIVEN THEME */
 (function(){
   const root = document.documentElement;
   const desktop = document.getElementById('themeToggle');
   const mobile = document.getElementById('themeToggleMobile');
+  const media = window.matchMedia('(prefers-color-scheme: dark)');
 
   function applyTheme(dark){
-    root.classList.toggle('dark-mode', dark);
+    root.classList.toggle('dark-mode', !!dark);
     [desktop,mobile].forEach(btn => {
       if(!btn) return;
-      btn.setAttribute('aria-pressed', String(dark));
-      btn.setAttribute('aria-label', dark ? 'Enable light mode' : 'Enable dark mode');
+      btn.setAttribute('aria-pressed', String(!!dark));
+      btn.setAttribute(
+        'aria-label',
+        dark ? 'Switch to light mode' : 'Switch to dark mode'
+      );
       btn.title = dark ? 'Switch to light mode' : 'Switch to dark mode';
     });
   }
 
-  // Default is always light unless the visitor previously chose dark mode.
-  const saved = localStorage.getItem('fd-theme-v2');
-  applyTheme(saved === 'dark' ? true : false);
+  function applySystemTheme(){
+    applyTheme(media.matches);
+  }
 
+  // Always follow the device/browser system preference on page load.
+  try {
+    localStorage.removeItem('fd-theme');
+    localStorage.removeItem('fd-theme-v2');
+  } catch(e) {}
+
+  applySystemTheme();
+
+  // Keep following live OS/browser theme changes.
+  if(media.addEventListener){
+    media.addEventListener('change', applySystemTheme);
+  }else if(media.addListener){
+    media.addListener(applySystemTheme);
+  }
+
+  // Toggle changes the current view, but is not saved.
+  // The next system-theme event (or refresh) returns to the OS preference.
   function toggle(){
-    const dark = !root.classList.contains('dark-mode');
-    applyTheme(dark);
-    localStorage.setItem('fd-theme-v2', dark ? 'dark' : 'light');
+    applyTheme(!root.classList.contains('dark-mode'));
   }
 
   if(desktop) desktop.addEventListener('click', toggle);
   if(mobile) mobile.addEventListener('click', toggle);
 })();
-</script>
 
 
-<script>
-try { localStorage.removeItem('fd-theme'); } catch(e) {}
-</script>
+
+
 
 </body>
 </html>
